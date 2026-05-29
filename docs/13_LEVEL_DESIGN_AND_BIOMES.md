@@ -1,79 +1,32 @@
 # Clatterhaul — Level Design & Biome Bible
 
-**Version:** 2.0  ·  **Owner:** Level Designers + Physics/Traversal Designers  ·  Source of R2-LV-5 / R2-HUMOR-2 resolution
+**Version:** 3.0 (Cycle-2)  ·  **Owner:** Level + Physics/Traversal Designers
 
-> Each biome must feel *mechanically distinct*, not reskinned: a **signature traversal system**, a **signature Calamity**, route forks (safe/risky), comedic beats, and a multi-stage **Boss-Haul**. Build with the Synty POLYGON modular kits (doc 04); dress to the environment standards (doc 05).
+> Design rationale per biome. **Per-contract specs (objective/length/par/payout/Perfect-Haul/comedy beats) now live in the Content Manifest (doc 20).** This doc holds the biome identity + rules.
 
-## Universal level-design rules
-- Legs are **8–20 min**; checkpoints every 60–90s of progress (forgiving — R3-FRUST-2).
-- Every obstacle has **≥ 2 co-op solutions**; telegraph → challenge → recovery rhythm.
-- **Sightlines:** the goal/next beat is usually visible — anticipation fuels banter.
-- **Comedy staging:** at least one "banana-peel" moment per leg (a tempting-but-treacherous shortcut, a springy surface, a curious animal).
-- **Readable hazards:** consistent warning palette + shape language (doc 16).
+## Universal rules
+Legs 8–20 min; checkpoints every 60–90s (forgiving). Every obstacle has **≥2 co-op solutions**. Goal usually visible (anticipation). ≥1 "banana-peel" comedy beat per leg; **≥1 authored laugh / ~90s** (doc 20). Readable, colorblind-safe hazard language (doc 16). Per-leg intensity curve calm→spike→relief, Boss ends on climax.
 
----
+## 1. Canyon Reach (onboarding) — winch/crane across ravines
+Hazards: ravines, falling rock, mud, mesas. Calamity **Rockslide Run**. Boss **The Collapsing Mesa** (winch→tilt-plateau→ramp-launch). Comedy: headbutting goats, fake shortcut cliff. Palette warm ochre. Cargo intro: Cheese Wheel. (Contracts CN-1..3 + CN-BOSS — doc 20.)
 
-## 1. Canyon Reach (onboarding biome)
-- **Signature system:** **winching & craning** across ravines; crumbling ledges.
-- **Hazards:** ravine gaps, falling-rock ledges, mud patches, narrow mesas.
-- **Calamity — "Rockslide Run":** a telegraphed slope of tumbling boulders; crew must time a dash + brace.
-- **Route forks:** low safe gully (slow) vs high mesa skip (fast, exposed to wind).
-- **Boss-Haul — "The Collapsing Mesa":** a 3-stage ascent where the path crumbles behind you; stage 1 winch up, stage 2 balance a tilting plateau, stage 3 a final ramp-launch to extraction.
-- **Comedy beats:** curious goats headbutt the rig; a "shortcut" that's actually a cliff.
-- **Palette/mood:** warm ochre/rust; golden-hour. **Cargo intro:** the Giant Cheese Wheel (rolls if unsecured — chaos).
+## 2. White Reach / Glacier — low-friction ice + crevasses
+Hazards: glare ice, thin ice, crevasses, drifts. Calamity **The Calving**. Boss **The Calving Glacier** (sliding shelf, re-anchor, crevasse leap). Comedy: ice pile-ups, penguins; Reactor-Cat yowls. Palette cold blue-white. (GL-1..4 + GL-BOSS.)
 
-## 2. Glacier / White Reach
-- **Signature system:** **low-friction ice** + crevasse gaps; skis/ballast shine.
-- **Hazards:** glare-ice slides, thin ice (cracks under weight), crevasses, snow drifts that bog wheels.
-- **Calamity — "The Calving":** the glacier face shears; a rising-debris timed sprint.
-- **Route forks:** frozen lake (fast, fragile) vs ridge path (grippy, longer).
-- **Boss-Haul — "The Calving Glacier":** ride a detaching ice shelf, re-anchor with the winch mid-slide, leap a widening crevasse.
-- **Comedy beats:** uncontrolled ice-slides into snowbanks; penguins as nuisance fauna.
-- **Palette:** cold blue-white, aurora. **Cargo:** the Sleeping Reactor-Cat (purrs when safe; yowls on hard hits — audio gag, doc 14).
+## 3. The Mire / Swamp — bog physics + gas pockets
+Hazards: sucking mud, methane, log bridges, gators. Calamity **Gator Alley**. Boss **The Sinking Temple** (rising waterline, collapsing platforms). Comedy: mud-launch ragdolls, frog rides cargo; Chandelier tings. Palette murky green. (MR-1..4 + MR-BOSS.)
 
-## 3. Mire / Swamp
-- **Signature system:** **bog physics** (wheels sink, paddle-wheel/balloon thrive) + gas pockets.
-- **Hazards:** sucking mud, methane pockets (whoomph!), floating log bridges, leeches-on-lens gag.
-- **Calamity — "Gator Alley":** non-lethal gators nudge/bite the rig, jostling balance on a narrow causeway.
-- **Route forks:** waterway (paddle-wheel fast) vs boardwalk (rickety, tips).
-- **Boss-Haul — "The Sinking Temple":** a slowly submerging ruin; keep the payload above the waterline while routing across rising platforms.
-- **Comedy:** mud-launch ragdolls; a frog that rides the cargo.
-- **Palette:** murky green, fireflies. **Cargo:** the Mayor's Chandelier (tings on every bump — stealth-tension comedy).
+## 4. Cinder Reach / Volcano — heat zones + speed
+Hazards: lava channels, ember rain, basalt collapse, geysers. Calamity **Avalanche of Cinders**. Boss **The Caldera Climb** (geyser-lift spiral up an erupting cone). Comedy: crew briefly aflame, marshmallow gag; Ice Sculpture melt-clock. Palette charcoal + ember. (CD-1..4 + CD-BOSS.)
 
-## 4. Cinder / Volcano
-- **Signature system:** **heat zones** (overheat the rig → temporary part failure) + falling debris; speed matters.
-- **Hazards:** lava channels (bridge them), ember rain, collapsing basalt, geysers (launch pads or hazards).
-- **Calamity — "Avalanche of Cinders":** outrun a pyroclastic-style dust wall.
-- **Route forks:** fast lava-bridge gauntlet vs slow cooled-rock detour.
-- **Boss-Haul — "The Caldera Climb":** spiral up an erupting cone, using geysers as timed lifts.
-- **Comedy:** flaming-then-extinguished crew members; a marshmallow cosmetic gag.
-- **Palette:** charcoal + ember orange. **Cargo:** a giant Ice Sculpture (melts over time — a built-in clock!).
+## 5. Neon Sprawl / City — moving hazards
+Hazards: traffic, electrified rails, drawbridge, pigeons. Calamity **Neon Rush Hour**. Boss **Downtown Gridlock** (parade + rising bridge). Comedy: honking cars, hot-dog catapult. Palette neon + rain. (NE-1..4 + NE-BOSS.)
 
-## 5. Neon Sprawl (city)
-- **Signature system:** **moving hazards** (traffic, trams, electrified rails); timing + lanes.
-- **Hazards:** cross-traffic, electrified rails (stun the rig), revolving doors, escalators.
-- **Calamity — "Neon Rush Hour":** synchronized traffic surge across a multi-lane intersection.
-- **Route forks:** rooftop crane-route (vertical, risky) vs street grid (busy).
-- **Boss-Haul — "Downtown Gridlock":** cross the city core during a parade, threading floats and a drawbridge.
-- **Comedy:** honking cars, a hot-dog stand catapult, pigeons.
-- **Palette:** dark + saturated neon, rain reflections. **Cargo:** a live Fish Tank (sloshes; fish reacts).
+## 6. Floating Ruins / Sky-Reach (finale) — wind + gaps
+Hazards: gusts, phasing platforms, swaying chains, long falls. Calamity **The Squall**. Boss **The Last Span** (build-while-crossing a collapsing sky-bridge → deliver Founder's Statue → credits). Comedy: ill-timed balloon pops, derpy slow-mo falls. Palette pastel + gold-hour. (SK-1..3 + SK-BOSS.)
 
-## 6. Sky-Ruins / Floating Reach (finale biome)
-- **Signature system:** **wind & gaps** (balloon/sail vital), floating islands, updrafts.
-- **Hazards:** gusts that shove the rig, disappearing/floating platforms, long falls (recover, don't die).
-- **Calamity — "The Squall":** a rotating windstorm that periodically reverses thrust.
-- **Route forks:** updraft glide (fast, wind-risky) vs chain-bridge crawl (steady).
-- **Boss-Haul — "The Last Span" (finale):** assemble a collapsing sky-bridge in stages while crossing it, ending in a triumphant launch to the Union home platform + credits.
-- **Comedy:** balloons popping at the worst time; majestic-then-derpy slow-mo falls.
-- **Palette:** pastel + gold-hour, cloud seas. **Cargo:** the Union's own "Founder's Statue" (callback finale cargo).
+## Per-biome DoD (with Art/QA; cases doc 27)
+Signature system taught in leg 1 · ≥2 solutions/obstacle · tuned Calamity · 3-stage Boss with generous checkpoints + triumphant exit · ≥1 comedy beat + nuisance fauna · dressing passes environment review · Deck perf in budget.
 
----
-
-## Per-biome authoring checklist (Definition of Done, with Art/QA — docs 05/06)
-- [ ] Signature system implemented & taught within first leg.
-- [ ] ≥ 2 solutions per obstacle verified by QA.
-- [ ] 1 signature Calamity with telegraph→spike→resolve tuned.
-- [ ] Boss-Haul: 3 readable stages, generous checkpoints, triumphant exit.
-- [ ] ≥ 1 authored comedy beat + nuisance fauna.
-- [ ] Dressing passes joint QA+Art environment review (grounding/pivots/LODs/lightmaps/hierarchy).
-- [ ] Perf within budget on Steam Deck (doc 02/06).
+## v3.0 delta
+Moved per-leg numbers to doc 20; kept biome identity/rules here for navigability.
