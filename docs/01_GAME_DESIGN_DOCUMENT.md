@@ -1,122 +1,120 @@
 # Clatterhaul — Game Design Document (GDD)
 
-**Version:** 1.0 (Phase 1)  ·  **Owner:** Game Design team  ·  **Engine:** Unity 6000.4.4f1 / URP  ·  **Net:** Mirror + Steam P2P
+**Version:** 2.0 (post 3-round senior review — see `08_REVIEW_AND_CRITIQUE_LOG.md`)  ·  **Owner:** Game Design  ·  **Engine:** Unity 6000.4.4f1 / URP  ·  **Net:** Mirror + Steam P2P
+
+> v2.0 changelog: added modes, Haul Contracts, per-biome Boss-Hauls, the Blueprint Garage, crew identity & perks, Calamity Events, and pointers into the new specialist docs (Feel 10, Humor 11, Economy 12, Levels 13, Audio 14, UX 15, Access 16, Live-ops 17, Marketing 18). The 10-hour curve is now designed in doc 09.
 
 ---
 
 ## 1. Vision statement
 
-Clatterhaul is the game your friend group keeps coming back to on a Friday night. Four players share one ridiculous, breakable machine and a payload they must *not* drop, and haul it across a hostile world. The fun is not in *winning cleanly* — it's in the gloriously stupid ways you almost don't. Every run is a story; every clip is an ad.
+Clatterhaul is the game your friend group keeps coming back to on a Friday night. 2–4 players share one ridiculous, breakable machine and a payload they must *not* drop, and haul it across a hostile, hilarious world. The fun is not in *winning cleanly* — it's in the gloriously stupid ways you almost don't. **Every run is a story; every clip is an ad; every session ends with "one more haul."**
 
-## 2. Design pillars
+## 2. Design pillars (the five commandments)
 
-1. **Shared piloting, shared blame.** No single player controls the contraption. Success requires constant, loud coordination — the source of all comedy and all triumph.
-2. **Readable physics, unpredictable outcomes.** Players must always *understand* why something happened (so they can do better) while never being able to fully *predict* it (so it stays funny).
-3. **Forgive the player, punish the machine.** Players ragdoll, dust off, and laugh. The contraption takes the damage. Failure is a setback, never a humiliation.
-4. **Every session is a highlight reel.** Proximity voice, expressive ragdolls, and slow-motion disaster cams make moments inherently shareable.
-5. **Drop-in, drop-out, drop-everything.** Onboarding is < 60 seconds. A friend can join mid-haul.
+1. **Shared piloting, shared blame.** No one player controls the contraption. Success demands constant, loud coordination — the engine of both comedy and triumph.
+2. **Readable physics, unpredictable outcomes.** Players always *understand why* (so they improve) yet can never fully *predict* (so it stays funny). Feedback is engineered (doc 10).
+3. **Forgive the player, punish the machine.** Players ragdoll, laugh, and recover. The contraption and the clock take the damage. Failure is a setback and a punchline — never a humiliation.
+4. **Every session is a highlight reel.** Proximity voice + expressive ragdolls + Disaster Cam + one-click clips make moments inherently shareable (docs 10, 11).
+5. **Drop-in, drop-out, drop-everything.** Onboarding < 60 seconds; a friend can join mid-session; controls are one-thumb simple, mastery is deep.
 
 ## 3. Target audience & market fit
 
-- **Primary:** 18–34 friend groups of 2–4 who buy cheap co-op games together and play on Discord. Overlaps directly with PEAK, R.E.P.O., Lethal Company, Content Warning, Human Fall Flat audiences.
-- **Secondary:** Streamers/creators seeking high-clip-density gameplay.
-- **Fit:** Sub-$13 impulse price, group-buy friendly, Steam Remote Play / proximity-chat native, Steam Deck verified.
+- **Primary:** 18–34 friend groups of 2–4 who buy cheap co-op games together and play on Discord. Direct overlap with PEAK, R.E.P.O., Lethal Company, Content Warning, Human Fall Flat.
+- **Secondary:** streamers/creators (high clip-density) and couples/duos.
+- **Fit:** sub-$13 impulse price, group-buy friendly, proximity-chat native, Steam Deck verified, Remote Play Together enabled.
 
-## 4. Core gameplay loop
+## 4. The three nested loops
 
-```
-PREP (in hub)  →  DEPART  →  HAUL LEG 1  →  HAZARD/EVENT  →  HAUL LEG 2  → ... →  EXTRACTION  →  PAYOUT/UNLOCKS  →  (back to PREP)
-```
+**Micro (seconds):** read terrain → call it out → act (steer/pedal/crank/brace) → react to the wobble → recover/celebrate.
 
-1. **Prep:** In the hub, the crew assembles/repairs the contraption from unlocked modules and loads the payload.
-2. **Haul:** Players man stations (steer, pedal, crank the crane, trim the sail) and/or use physics-hands to brace cargo, push, or pull.
-3. **Hazards & events:** Terrain breaks, weather hits, modifiers fire. The machine *will* fail in ways that require improvisation.
-4. **Extraction:** Reach the goal with as much payload value intact as possible.
-5. **Payout:** Value → currency → cosmetic + module unlocks. No power creep that breaks balance (see §8).
+**Macro (a run, 8–20 min):** Prep in Garage → Depart → Haul legs punctuated by **Hazards & Calamity Events** → **Boss-Haul** (biome finale) → Extraction → Payout & Blooper Reel.
 
-## 5. The contraption (signature system)
+**Meta (across sessions, 10h+):** earn Scrip & Sprockets → climb the **Union Ladder (ranks)** → unlock modules/biomes/cosmetics/mutators → build & share blueprints → chase Perfect Hauls, Foreman's Challenges, and the Daily Gauntlet leaderboard. (Full curve: doc 09; economy: doc 12.)
 
-The contraption is a **physics body composed of modular parts** connected by configurable joints.
+## 5. Modes
 
-### 5.1 Module categories
-| Category | Examples | Role |
+| Mode | Description | Role |
 |---|---|---|
-| **Chassis** | flatbed, cradle, cage | The payload mount; defines weight & balance |
-| **Locomotion** | wheels, mechanical legs, tank-tracks, paddle-wheel | How it moves; each handles terrain differently |
-| **Lift/Assist** | balloon, sail, crane-arm, winch, spring-jack | Vertical help, towing, recovery |
-| **Stabilizers** | outriggers, gyro, ballast | Anti-tip; trades speed for safety |
-| **Cosmetic** | paint, horns, flags, hats | No gameplay effect (monetization-safe) |
+| **Contracts (Campaign-lite)** | Ordered set of hand-tuned hauls across 6 biomes, each ending in a Boss-Haul. The spine of the ~10h. | Onboarding → mastery |
+| **Endless — "The Long Haul"** | Procedurally chained legs with escalating mutators; how far/clean can you get? | Replay / leaderboards |
+| **Daily Gauntlet** | One fixed seed + mutator set for everyone that day; global + friends leaderboards. | Daily return hook |
+| **Free Play / Custom** | Pick biome, mutators, payload; sandbox + Workshop blueprints. | Creativity / streams |
 
-### 5.2 Stations & physics-hands
-- **Stations** are interaction points (steering yoke, pedal, crane lever, sail rope). One player per station; control is networked and hand-off-able.
-- **Physics-hands**: any player not on a station has Human-Fall-Flat-style grab hands to brace cargo, hold a snapping rope, or shove the machine off a ledge.
-- **The tension:** there are always more useful jobs than hands. Crews must triage in real time.
+## 6. The contraption (signature system)
 
-### 5.3 Payload
-- A fragile, high-value object (the "Cargo") with a **condition meter**. Impacts, tipping, and submersion chip it. Final payout scales with surviving condition → creates the core "protect the precious thing" drama.
+A **physics body of modular parts** joined by configurable joints, assembled in the **Blueprint Garage** (snap-grid editor; save/share blueprints — doc 15).
 
-## 6. Hazard & event design
-
-- **Static terrain hazards:** ravines (need winch/crane), mud (bogs wheels), ice (low friction), narrow ledges, collapsing bridges.
-- **Dynamic events:** wind gusts (vs balloon/sail), rockslides, rising water, fauna nuisances (non-lethal animals that nudge the machine — echoing the wildlife-pressure that made RV There Yet? funny).
-- **Design rule:** every hazard has at least **two valid co-op solutions** to reward creativity, never memorization.
-
-## 7. Content & depth to ~10 hours
-
-| Source of depth | Detail | Est. hours |
+### 6.1 Module classes (~40 modules total at launch; all **sidegrades** — doc 12)
+| Class | Examples | Trade-off identity |
 |---|---|---|
-| **6 biomes** | Canyon, Swamp, Glacier, Volcano, Neon City, Sky-Ruins — each with unique terrain physics | ~5.0 |
-| **Branching routes** | 2–3 route forks per biome (safe/slow vs risky/fast) | +1.5 |
-| **Modifier deck** | Daily-rotating run modifiers (low-grav, greased joints, storm, fragile cargo, night) | +1.5 |
-| **Mastery & cosmetics** | "Perfect haul" leaderboard goals, contraption cosmetics, achievements | +2.0 |
-| **Total** | | **~10h** |
+| **Chassis** | Flatbed, Cradle, Cage, Sled | mount type → weight, balance, payload exposure |
+| **Locomotion** | Wheels, Mono-wheel, Mech-Legs, Tank-Tracks, Paddle-wheel, Skis | speed vs grip vs terrain fit |
+| **Lift/Assist** | Balloon, Sail, Crane-arm, Winch, Spring-jack, Rocket-puff | vertical/tow help vs instability |
+| **Stabilizer** | Outriggers, Gyro, Ballast, Counter-weight | safety vs speed/weight |
+| **Cosmetic** | Paint, horns, flags, hats, decals, googly-eyes | none (monetization-safe) |
 
-Replayability (not raw length) is the retention engine — consistent with the friend-slop model.
+### 6.2 Stations & physics-hands
+- **Stations:** networked, hand-off-able control points (steering yoke, pedal, crane lever, sail rope, winch crank). One player each.
+- **Physics-hands:** anyone off-station has grab-hands (Human-Fall-Flat feel) to brace cargo, hold a snapping rope, push, or catch a teammate.
+- **The core tension:** *always more useful jobs than hands.* Crews triage in real time — the wellspring of banter and blame.
 
-## 8. Progression & economy
+### 6.3 Payload ("the Cargo")
+A fragile, high-value, **personality-bearing** object (doc 11) with a **condition meter** that *chips* (never instantly shatters — R3-FRUST-2). Impacts, tipping, submersion, heat/cold chip it. Final payout scales with surviving condition → the "protect the precious idiot thing" drama. 12+ cargo types, each with reactions and a quirk (e.g., the Reactor-Cat purrs when safe, the Chandelier tings on every bump).
 
-- **Currency:** "Scrip" earned from payload value + run bonuses.
-- **Unlocks:** new modules (sidegrades, not strict upgrades), biomes, cosmetics, modifier cards.
-- **Anti-power-creep rule:** modules are **sidegrades** (trade-offs) so veterans and newcomers can always play together fairly — protects the group-buy social loop and review score.
+## 7. Hazard & event design
 
-## 9. Multiplayer design
+- **Static terrain hazards:** ravines (winch/crane), mud (bogs wheels), ice (low friction), narrow ledges, collapsing bridges, gusty gaps.
+- **Dynamic events:** wind gusts (vs balloon/sail), rockslides, rising water, non-lethal fauna nuisances (the RV-There-Yet? wildlife-pressure laugh).
+- **Calamity Events (NEW):** scripted-but-physical mid-haul set-pieces with a telegraph → spike → resolution rhythm (e.g., "The Avalanche," "Bridge of Sighs," "Neon Rush Hour"). One signature Calamity per biome (doc 13).
+- **Design rule:** every hazard has **≥ 2 valid co-op solutions** — reward creativity, never memorization.
 
-- **Model:** Host-authoritative (the host simulates physics; clients send input + interpolate). 2–4 players, friends-first via Steam lobbies.
-- **Why host-authoritative:** physics determinism across clients is impractical; one authority avoids desync of the joint-heavy contraption.
-- **Join flow:** Steam invite → lobby → ready → depart. Drop-in allowed in hub; late-join in-run spectates until next safe checkpoint.
-- **Proximity voice:** distance-attenuated VOIP is a first-class feature, not an afterthought (it is the comedy delivery system).
-- Full architecture: see `docs/02_TECHNICAL_DESIGN_DOCUMENT.md`.
+## 8. Boss-Hauls (biome finales — NEW)
 
-## 10. Camera, controls, UX
+Each biome ends in a **Boss-Haul**: a multi-stage signature obstacle that demands the biome's mechanic + full-crew coordination (e.g., Canyon's "The Collapsing Mesa," Glacier's "The Calving Glacier"). Completing it banks the contract, awards a cosmetic, and unlocks the next biome. (Full designs: doc 13.)
 
-- **Camera:** Cinemachine 3 third-person with smart framing that keeps the contraption + nearby players in view; auto "disaster cam" slow-mo on catastrophic tip/break for clip value.
-- **Controls:** Unity Input System; full gamepad + KB/M; context-sensitive interact; one-button grab.
-- **UX:** minimal HUD (payload condition, distance-to-goal, ping wheel, voice indicators). Onboarding via a 60-second "first hill" tutorial.
+## 9. Crew identity & perks (NEW, sidegrade)
 
-## 11. Audio & game feel
+- **Crew customization:** body, outfit, hat, emote set, voice pitch — self-expression, no power.
+- **Perks (optional, sidegrade):** small situational trade-offs (e.g., "Sure Grip": +grab hold, −move speed). Off by default; never strictly better; balanced in doc 12 so any mix can play fairly together (protects review score, R3-BAL-1).
 
-- Creaks, groans, and metal stress sounds scale with joint strain (telegraphs imminent failure — readable physics pillar).
-- Triumphant stinger on extraction; comedic stinger on total wipeout.
-- Haptics on gamepad for strain/impact.
+## 10. Content & depth to ~10 hours
 
-## 12. Accessibility
+The full hour-by-hour curve, contract list, and unlock cadence live in **`09_CONTENT_AND_10_HOUR_PACING.md`**. Summary: 6 biomes × multiple Contracts + Boss-Hauls (~6h first clear) + Endless/Daily/Workshop + mastery (Perfect Hauls, ranks, cosmetics) push well past 10h of engaged play, with **replayability — not raw length — as the retention engine.**
 
-- Colorblind-safe hazard markers, subtitle/caption support for VO and key SFX, remappable controls, voice-to-text optional, adjustable physics-assist ("sticky grab") toggle.
+## 11. Game feel, humor & audio (pointers)
 
-## 13. Monetization & pricing
+These are first-class systems with dedicated docs: **Game Feel & Juice (10)**, **Humor & Comedy Design (11)**, **Audio & Music (14)**. The GDD mandates: every impact has hit-stop+shake+squash+SFX; every disaster is auto-captured for clipping; every session produces at least one authored laugh.
 
-- **Premium one-time purchase $9.99–$12.99.** No pay-to-win. Optional post-launch cosmetic DLC packs. Friend-pass consideration (one purchase, invite a friend for a trial leg) modeled on Split Fiction's goodwill.
+## 12. Multiplayer design (summary; full TDD doc 02)
 
-## 14. MVP / vertical slice scope
+- **Host-authoritative**, 2–4 players, friends-first via Steam lobbies; the host simulates physics, clients send input + interpolate.
+- **Join flow:** Steam invite → lobby → ready → depart. Drop-in in hub; safe late-join at next checkpoint.
+- **Proximity voice** is a first-class comedy-delivery feature.
+- **No host migration at launch** (documented limit); run ends gracefully if host leaves.
 
-The Phase 2–3 vertical slice ships **1 biome (Canyon), 5–6 modules, 1 payload, 3 hazards, 2–4p networked play, proximity voice, full prep→haul→extract loop.** Everything else scales from these systems.
+## 13. Camera, controls, UX (summary; full doc 15)
 
-## 15. Success metrics (target)
+Cinemachine 3 third-person with smart framing + auto **Disaster Cam** slow-mo; Input System (gamepad + KB/M); one-button grab, context interact, **ping wheel**, **emote wheel**; minimal diegetic-first HUD; end-of-run **Story Card** + Blooper Reel.
 
-- **≥95% positive** Steam reviews at launch (target 99% band).
-- **Median session ≥ 35 min**, ≥ 3 sessions/week for active groups.
-- **Wishlist → sale** conversion fueled by a Next Fest demo with a single, perfectly clip-able hazard.
+## 14. Accessibility (summary; full doc 16)
 
-## 16. References / comps
+Colorblind-safe hazards, captions, remap, sticky-grab assist, motion/photosensitivity options, one-hand & co-pilot assists, adjustable difficulty via route + mutator choice.
 
-PEAK, RV There Yet?, Human Fall Flat, Lethal Company, Content Warning, Tools Up!, Snowrunner (terrain-traversal feel).
+## 15. Monetization & pricing
+
+Premium one-time **$9.99–$12.99**, no pay-to-win. Optional post-launch **cosmetic** packs; free content drops (doc 17). **Friend-pass** consideration (one buys, invite a friend for a trial leg) modeled on Split Fiction goodwill.
+
+## 16. MVP / vertical slice scope (unchanged — protects cost)
+
+Canyon biome, 6–8 modules, 1–2 payloads, 3 hazards + 1 Calamity + the Canyon Boss-Haul, 2–4p networked, proximity voice, Disaster Cam, full Prep→Haul→Extract→Payout loop. All other content reuses these systems (scope guarded in doc 03).
+
+## 17. Success metrics (target)
+
+- **≥95% positive** Steam reviews (target 99% band); near-zero "frustrating/unfair" reviews.
+- **Median session ≥ 40 min**, ≥ 3 sessions/week for active groups; **D7 retention ≥ 35%** for groups.
+- **≥ 1 shared clip per 2 sessions** (virality proxy); wishlist→sale fueled by a Next-Fest demo (doc 18).
+
+## 18. References / comps
+
+PEAK, RV There Yet?, Human Fall Flat, Lethal Company, Content Warning, Overcooked, Moving Out, Snowrunner (terrain feel), Gang Beasts (ragdoll comedy).
