@@ -1,55 +1,59 @@
 # Clatterhaul — Unity Asset Store & Package Integration Plan
 
-**Version:** 1.0 (Phase 2)  ·  **Owner:** Unity Asset Store Integration Experts + Package/Dependency Experts
+**Version:** 2.0 (post-review)  ·  **Owner:** Asset Store Integration + Package/Dependency Experts
 
-> Every third-party package is evaluated for **license compatibility (commercial Steam release), performance cost, and conflict-free integration** before adoption, per studio rule. Verify current license terms at purchase time.
-
-## Legend
-- **Tier:** Core (must-have) / Recommended / Optional
-- **Cost:** Free / Paid (one-time Asset Store)
-- **License note:** standard Unity Asset Store EULA permits use in a shipped commercial game unless stated; confirm per-asset.
+> Every package evaluated for **license compatibility (commercial Steam release), performance cost, and conflict-free integration**. v2.0 adds packages for the new feel/humor/clip/live-ops systems. Confirm current terms at purchase; pin & record versions on adoption.
 
 ## Networking & online
-| Package | Tier | Cost | Purpose | Notes / conflicts |
-|---|---|---|---|---|
-| **Mirror** | Core | Free (OpenUPM/Store) | High-level netcode | No CCU fees; host-authoritative. Choose ONE high-level lib (no NGO alongside). |
-| **FizzySteamworks** | Core | Free | Steam P2P transport for Mirror | Pair with Steamworks.NET; set transport on NetworkManager. |
-| **Steamworks.NET** | Core | Free | Steam lobbies/invites/voice | Requires `steam_appid.txt`; do not commit real App ID. |
-| **Dissonance Voice Chat** | Recommended | Paid | Robust proximity VOIP | Has Mirror integration package; alt = Steam voice (free) if budget-tight. |
-
-## Physics, animation & feel
 | Package | Tier | Cost | Purpose | Notes |
 |---|---|---|---|---|
-| **PuppetMaster (RootMotion)** | Recommended | Paid | Active-ragdoll for players + physics-hands feel | Industry standard for Human-Fall-Flat-style bodies; profile on Deck. |
-| **Obi Rope** | Optional | Paid | Winch cables / tow ropes as real rope physics | Adds CPU cost; cap rope count; or fake with `ConfigurableJoint` if perf-bound. |
-| **DOTween Pro** | Recommended | Paid | UI/camera tweening, disaster-cam slow-mo | Lightweight; avoid in hot physics loops. |
+| **Mirror** | Core | Free | high-level netcode (host-authoritative) | one high-level lib only |
+| **FizzySteamworks** | Core | Free | Steam P2P transport | pair with Steamworks.NET |
+| **Steamworks.NET** | Core | Free | lobbies/invites/voice/**Workshop**/leaderboards/cloud | `steam_appid.txt`; never commit real App ID |
+| **Dissonance Voice Chat** | Recommended | Paid | robust proximity VOIP (Mirror integration) | alt = Steam voice (free) |
 
-## Art & environment (the bulk of paid spend)
+## Feel, animation & comedy
 | Package | Tier | Cost | Purpose | Notes |
 |---|---|---|---|---|
-| **Synty POLYGON** biome packs (Nature, Snow, Western/Desert, Sci-Fi City, Fantasy) | Core | Paid | Stylized modular kits for the 6 biomes — fastest path to a cohesive look | Single art language across biomes = cheap + cohesive; superb perf (low-poly, atlased). Check lightmap UVs; some props need pivot/grounding fixes (QA-Art pass). |
-| **Synty POLYGON Particle/FX** | Recommended | Paid | Stylized dust/impact/break VFX | Matches POLYGON look; URP variants. |
-| **Skybox / Time-of-day** (e.g. stylized skies) | Optional | Paid | Biome mood | Bake reflection probes per biome. |
+| **PuppetMaster (RootMotion)** | Core | Paid | active ragdoll + physics-hands + comedic catches | profile on Deck |
+| **DOTween Pro** | Core | Paid | juice tweens, Disaster-Cam, UI | keep out of hot physics loops |
+| **Cinemachine 3** | Core | Free (UPM) | smart cam + Disaster-Cam rigs | included |
+| **Animation pack(s)** (emotes, celebrate/fail, idles) | Recommended | Paid | expressive comedy anims | retarget to active ragdoll |
+| **Obi Rope** | Optional | Paid | real winch/tow rope physics | cap rope count or fake w/ joints |
+
+## Clip / capture (virality)
+| Package | Tier | Cost | Purpose | Notes |
+|---|---|---|---|---|
+| **NatCorder / AVPro-style recorder** | Recommended | Paid | in-game MP4/GIF clip export | off-thread encode; Deck perf budget; verify license for shipped runtime capture |
+| Unity Recorder | Dev only | Free | editor capture for marketing | not shipped |
+
+## Art & environment (bulk of paid spend)
+| Package | Tier | Cost | Purpose | Notes |
+|---|---|---|---|---|
+| **Synty POLYGON** biome kits (Nature, Snow, Western/Desert, Sci-Fi City, Fantasy, Apocalypse) | Core | Paid | 6 biomes + Depot hub, one cohesive art language | check lightmap UVs/pivots on import |
+| **Synty POLYGON Particles/FX** | Recommended | Paid | stylized dust/spark/break/confetti | URP variants |
+| **Stylized skies / time-of-day** | Optional | Paid | biome mood | bake reflection probes |
 
 ## Audio
 | Package | Tier | Cost | Purpose | Notes |
 |---|---|---|---|---|
-| **FMOD for Unity** | Recommended | Free (lic. by revenue) | Adaptive strain/impact audio | Free under FMOD indie revenue threshold; confirm tier. |
-| **Stylized SFX pack** (impacts/creaks) | Recommended | Paid | Contraption strain library | Drives the "readable physics" audio telegraph. |
+| **FMOD for Unity** | Core | Free (rev-based) | adaptive music + strain/feel events | confirm indie tier |
+| **Music + SFX packs** (folk/orchestral per biome, impacts/creaks) | Recommended | Paid | biome identity + strain library | per-biome banks |
 
 ## Tools & save
 | Package | Tier | Cost | Purpose | Notes |
 |---|---|---|---|---|
-| **Easy Save 3** | Recommended | Paid | Robust local save (unlocks/cosmetics/settings) | Avoids hand-rolled JSON edge cases. |
-| **Hot Reload** | Optional | Paid | Faster iteration | Editor-only; not shipped. |
+| **Easy Save 3** | Core | Paid | save schema v2 + Steam Cloud | robust |
+| **Hot Reload** | Optional | Paid | iteration | editor-only |
+| **Odin Inspector** | Optional | Paid | SO/data tooling for designers | editor-only |
 
 ## Integration rules (conflict-free)
-1. **One high-level netcode library only** (Mirror). Never import NGO/Photon high-level alongside.
-2. Import each paid pack into an isolated folder; never let a pack overwrite project settings (URP asset, Input actions, Tags/Layers) — reconcile manually.
-3. Pin versions; record exact versions in this doc on adoption. Re-run EditMode tests after each import.
-4. Keep all third-party under `Assets/ThirdParty/<Vendor>/` and exclude from our asmdefs except via explicit references.
-5. Strip demo scenes/scripts from shipped build to control size and avoid stray cameras/audio listeners.
-6. License ledger maintained here; no GPL/again-incompatible assets in the shipped client.
+1. One high-level netcode (Mirror) — never NGO/Photon alongside.
+2. Isolate packs under `Assets/ThirdParty/<Vendor>/`; never overwrite URP asset / Input actions / Tags & Layers.
+3. Pin & record versions here; re-run EditMode tests after each import.
+4. Strip demo scenes/scripts/cameras/audio-listeners before shipping.
+5. No committed secrets (App IDs); secret-scan each phase.
+6. License ledger here; verify **runtime capture/recording** license specifically (shipped clip export).
 
-## Estimated paid-asset budget
-Low hundreds of USD in one-time Asset Store purchases (Synty packs dominate). This is the core cost-saving thesis: **buy the art language, build the systems.**
+## Budget thesis
+Low hundreds of USD one-time (Synty + a few paid tools). **Buy the art language + feel tools; build the systems.** This is the cost-saver enabling a 99%-aiming co-op hit on a small budget.

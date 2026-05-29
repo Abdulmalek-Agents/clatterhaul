@@ -8,43 +8,54 @@ Lineage: *PEAK* × *RV There Yet?* × *Human Fall Flat* × *Lethal Company*'s pa
 | | |
 |---|---|
 | **Engine** | Unity **6000.4.4f1** |
-| **Render Pipeline** | URP (Universal Render Pipeline) |
-| **Networking** | **Mirror** + FizzySteamworks (Steam P2P, friend-hosted) |
-| **Players** | 2–4 co-op (host-authoritative) |
-| **Target playtime** | ~10 hours (6 biome haul-runs + modifier deck + cosmetics) |
+| **Render Pipeline** | URP |
+| **Networking** | **Mirror** + FizzySteamworks (Steam P2P, friend-hosted, host-authoritative) |
+| **Players** | 2–4 co-op |
+| **Target playtime** | **~10h+** (6 biomes + Boss-Hauls + Endless + Daily + mastery) |
 | **Platform** | Windows 64-bit (Steam), Steam Deck verified target |
-| **Price point** | $9.99–$12.99 (impulse, group-buy friendly) |
+| **Price point** | $9.99–$12.99 |
+| **Docs version** | **v2.0** (after a 50-person, 3-round senior review) |
 
 ---
 
-## The pitch
+## Documentation (v2.0)
 
-A crew shares control of one absurd, modular contraption — legs, wheels, a balloon, a crane-arm, a sail — and a fragile, precious payload. Together you haul it across escalating hazard courses, winching, balancing, and improvising when (not *if*) it breaks. **Proximity voice chat** turns every catastrophic collapse into a story you retell for weeks.
-
-## Why this game (validated)
-
-Co-op generated ~$4.1B on Steam in H1 2025 and "play with friends" is the most reliable predictor of viral success. The biggest budget hits (PEAK, R.E.P.O.) are physics-chaos + proximity-chat machines. Clatterhaul is engineered for exactly that clip-able, group-buy, >90%-positive flywheel. Full evidence: [`docs/00_PORTFOLIO_5_IDEAS_AND_VALIDATION.md`](docs/00_PORTFOLIO_5_IDEAS_AND_VALIDATION.md).
-
-## Documentation
-
+**Design & content**
 | Doc | Purpose |
 |---|---|
-| [`docs/00_PORTFOLIO_5_IDEAS_AND_VALIDATION.md`](docs/00_PORTFOLIO_5_IDEAS_AND_VALIDATION.md) | The 5-concept slate + market validation |
-| [`docs/01_GAME_DESIGN_DOCUMENT.md`](docs/01_GAME_DESIGN_DOCUMENT.md) | Full GDD |
-| [`docs/02_TECHNICAL_DESIGN_DOCUMENT.md`](docs/02_TECHNICAL_DESIGN_DOCUMENT.md) | Architecture & networking (Phase 2) |
-| [`docs/03_IMPLEMENTATION_GUIDELINES.md`](docs/03_IMPLEMENTATION_GUIDELINES.md) | Phase-by-phase build plan (Phase 2) |
-| [`docs/04_UNITY_ASSET_INTEGRATION.md`](docs/04_UNITY_ASSET_INTEGRATION.md) | Asset Store integration plan (Phase 2) |
-| [`docs/05_ART_AND_ENVIRONMENT_PLAN.md`](docs/05_ART_AND_ENVIRONMENT_PLAN.md) | Art direction & environment standards (Phase 2) |
-| [`docs/06_QA_TEST_PLAN.md`](docs/06_QA_TEST_PLAN.md) | QA & environment-review gates (Phase 2) |
-| [`docs/07_NARRATIVE_AND_WORLD.md`](docs/07_NARRATIVE_AND_WORLD.md) | World, tone & writing bible |
+| [`00_PORTFOLIO_5_IDEAS_AND_VALIDATION.md`](docs/00_PORTFOLIO_5_IDEAS_AND_VALIDATION.md) | 5-concept slate + market validation |
+| [`01_GAME_DESIGN_DOCUMENT.md`](docs/01_GAME_DESIGN_DOCUMENT.md) | Full GDD (v2.0) |
+| [`09_CONTENT_AND_10_HOUR_PACING.md`](docs/09_CONTENT_AND_10_HOUR_PACING.md) | Designed 10-hour curve & unlock cadence |
+| [`12_ECONOMY_PROGRESSION_AND_META.md`](docs/12_ECONOMY_PROGRESSION_AND_META.md) | Currencies, ranks, modules, cosmetics, goals |
+| [`13_LEVEL_DESIGN_AND_BIOMES.md`](docs/13_LEVEL_DESIGN_AND_BIOMES.md) | Per-biome bible + Boss-Hauls + Calamities |
+
+**Fun engine**
+| Doc | Purpose |
+|---|---|
+| [`10_GAME_FEEL_AND_JUICE.md`](docs/10_GAME_FEEL_AND_JUICE.md) | Impact/feedback/juice spec |
+| [`11_HUMOR_AND_COMEDY_DESIGN.md`](docs/11_HUMOR_AND_COMEDY_DESIGN.md) | The engineered comedy systems |
+| [`07_NARRATIVE_AND_WORLD.md`](docs/07_NARRATIVE_AND_WORLD.md) | World, characters, bark library |
+| [`14_AUDIO_AND_MUSIC.md`](docs/14_AUDIO_AND_MUSIC.md) | Adaptive music, strain audio, voice |
+
+**Systems & production**
+| Doc | Purpose |
+|---|---|
+| [`02_TECHNICAL_DESIGN_DOCUMENT.md`](docs/02_TECHNICAL_DESIGN_DOCUMENT.md) | Architecture & networking (v2.0) |
+| [`03_IMPLEMENTATION_GUIDELINES.md`](docs/03_IMPLEMENTATION_GUIDELINES.md) | M0–M8 build plan |
+| [`15_UX_UI_AND_ONBOARDING.md`](docs/15_UX_UI_AND_ONBOARDING.md) | HUD, menus, First Hill, Garage UX |
+| [`16_ACCESSIBILITY.md`](docs/16_ACCESSIBILITY.md) | Full accessibility suite |
+| [`04_UNITY_ASSET_INTEGRATION.md`](docs/04_UNITY_ASSET_INTEGRATION.md) | Asset Store integration plan |
+| [`05_ART_AND_ENVIRONMENT_PLAN.md`](docs/05_ART_AND_ENVIRONMENT_PLAN.md) | Art direction & environment standards |
+| [`06_QA_TEST_PLAN.md`](docs/06_QA_TEST_PLAN.md) | QA + fun-metric audits |
+
+**Business & process**
+| Doc | Purpose |
+|---|---|
+| [`17_LIVEOPS_AND_POST_LAUNCH.md`](docs/17_LIVEOPS_AND_POST_LAUNCH.md) | Seasons, Workshop, creators |
+| [`18_MARKETING_AND_STEAM_PAGE.md`](docs/18_MARKETING_AND_STEAM_PAGE.md) | Steam page & wishlist funnel |
+| [`08_REVIEW_AND_CRITIQUE_LOG.md`](docs/08_REVIEW_AND_CRITIQUE_LOG.md) | 50-person, 3-round review cycle |
+| [`AR/ملخص_اللعبة_عربي.md`](docs/AR/ملخص_اللعبة_عربي.md) | Arabic summary |
 | [`STUDIO_LOG.md`](STUDIO_LOG.md) | Living phase/decision log |
-
-## Branch & phase workflow
-
-Development is pushed in **QA-gated phases** on feature branches → PR → merge after QA + Art/Environment sign-off.
-
-- `phase-1-foundation` — skeleton + design/narrative docs
-- `phase-2-tech-and-assets` — technical design, implementation guide, asset plan, code stubs, tests
 
 ---
 _© Abdulmalek-Agents. Internal concept project._
