@@ -1,44 +1,56 @@
 # Clatterhaul — Narrative & World Bible
 
-**Version:** 1.0 (Phase 1)  ·  **Owner:** Narrative Direction & Game Writing teams
+**Version:** 2.0 (expanded post-review — R1-NAR-9)  ·  **Owner:** Narrative Direction & Game Writing
 
-> Tone target: *warm, anarchic, low-stakes-yet-earnest*. The world should make players smile before anything funny even happens.
+> Tone: *warm, anarchic, low-stakes-yet-earnest.* The world makes you smile before anything funny happens. Story is delivered diegetically (radio, environment, vignettes) and never blocks the social flow.
 
 ## 1. Premise
+The great roads collapsed generations ago. The only way to move anything precious across the broken lands is the old guild way: load it onto a hand-built **Haul-Rig** and *clatter* it home with your crew. You are the newest **Haul Crew** of the **Tinkers' Union** — underfunded, over-eager, and absolutely going to drop the cargo at least once.
 
-In the world of **Clatterhaul**, the great roads collapsed generations ago. The only way to move anything precious across the broken lands is the old guild way: load it onto a hand-built **Haul-Rig** and *clatter* it home with your crew. You are the newest **Haul Crew** of the **Tinkers' Union** — underfunded, over-eager, and absolutely going to drop the cargo at least once.
+## 2. The world: the Tinkers' Union & the Six Reaches
+- **The Tinkers' Union:** a ramshackle, beloved guild of haulers and inventors. Your hub is **The Depot** — a cluttered garage of spare parts, trophy shelves, and questionable advice. Motto: *"It clatters, therefore it hauls."*
+- **The Six Reaches** (biomes), each with a one-line legend:
+  - *Canyon Reach* — "Where the roads died first, and the goats inherited the cliffs."
+  - *White Reach (Glacier)* — "The ice keeps what it catches. Don't be caught."
+  - *The Mire* — "Solid ground is a rumor here."
+  - *Cinder Reach (Volcano)* — "The mountain is awake, and it is hungry for schedules."
+  - *Neon Sprawl* — "The only city that never agreed to stop."
+  - *Floating Ruins (Sky-Ruins)* — "The Founders built up when there was no more across."
 
-## 2. Tone & voice
+## 3. Characters
+### Foreman Bracket (NPC, your dispatcher)
+Gruff, secretly proud, deadpan. Briefs runs over the radio; reacts to disasters and triumphs. The authored-wit counterpoint to chaos. *Voice:* short, dry, never cruel. Sample: "You will haul the chandelier. You will not 'improve' it."
 
-- **Funny but never mean.** Comedy comes from physics and situations, not insults.
-- **Earnest underdogs.** The crew genuinely cares about the delivery; that sincerity makes failure endearing rather than nihilistic.
-- **Diegetic minimalism.** Story is delivered through environment, radio chatter, and short between-run vignettes — never long cutscenes that interrupt the social flow.
+### The Greasewheels (rival crew, off-screen)
+Three cocky rivals whose leaderboard times and radio interruptions add friendly competition. *Vex* (smug leader), *Lugnut* (enthusiastic muscle), *Pip* (gremlin gadgeteer). They never win the *heart* of a run — just the clock.
 
-## 3. The world (light worldbuilding)
+### The Cargo (recurring "characters")
+Each payload has a personality and reactions (doc 11): the **Giant Cheese Wheel** (wants to roll free), the **Sleeping Reactor-Cat** (purrs/yowls), the **Mayor's Chandelier** (vain, fragile), the **Ice Sculpture** (melting clock), the **Live Fish Tank** (anxious fish), and the finale **Founder's Statue**.
 
-- **The Tinkers' Union:** the ramshackle guild that employs you. Your hub is a cluttered depot full of spare parts and questionable advice.
-- **The Six Reaches** (= the 6 biomes): the Canyon Reach, the Mire, the White Reach (glacier), the Cinder Reach (volcano), the Neon Sprawl, and the Floating Ruins. Each has its own folk character and a one-line legend explaining why hauling there is a nightmare.
-- **The Cargo:** each contract carries a different absurd-but-beloved payload (a giant wheel of cheese, a sleeping reactor-cat, the mayor's chandelier). The payload's personality flavors the run's chatter.
+### The Crew (players)
+Customizable Union tinkers — *you* are the characters. No fixed personalities; cosmetics + emotes + proximity voice = self-expression.
 
-## 4. Characters
+## 4. Narrative delivery & cadence
+- **Briefings:** 1–2 radio lines on depart (skippable, non-blocking).
+- **Reach vignettes:** a 15-second illustrated legend card on first entry to each biome.
+- **Barks:** Foreman + crew + cargo reactions during play.
+- **Season arc (light):** across the six Reaches, the Union is trying to deliver the **Founder's Statue** to re-open the old central road. The finale Boss-Haul pays this off — a quiet, earned "we did it" rather than a boss fight.
 
-- **Crew (players):** customizable Union tinkers. No fixed personalities — the *players* are the characters; cosmetics let them self-express.
-- **Foreman Bracket (NPC):** the gruff, secretly-proud dispatcher who briefs runs over the radio. Source of dry one-liners and tutorialization.
-- **Rival crew "The Greasewheels":** off-screen rivals whose leaderboard times and trash-talk radio interruptions add light competitive flavor.
+## 5. Bark library (samples; ≤12 words; full sheet maintained by writers)
+**Depart:** "Wheels on. Brains optional." · "Try to bring it back in one piece. Or any pieces."
+**Strain:** "That's a load-bearing noise." · "She's singing. That's bad."
+**Payload chip:** "Define 'intact' for me again?"
+**Disaster:** "Beautiful. Catastrophic. Both."
+**Triumph:** "Cargo intact?! Mark the calendar." · "The Greasewheels are gonna hate this."
+**Rival interrupt:** Vex: "Cute rig. Did it come with the cliff?"
+**Cargo (Reactor-Cat):** *purr* (safe) / *YOWL* (hard hit).
+**Gravestone:** "Here lies the cheese. It rolled with purpose." · "The chandelier saw things."
 
-## 5. Narrative delivery & cadence
+## 6. Writing rules
+1. ≤ 12 words; visual-first; loc-friendly.
+2. Blame the machine/fate/weather — never a player.
+3. Imply lore; don't lecture. The Depot's clutter tells the history.
+4. Every line should be fun to read aloud on stream.
 
-- **Briefings:** 1–2 lines of radio VO at run start (skippable, never blocking).
-- **Reaches unlock vignettes:** a 15-second illustrated card establishing each new biome's legend.
-- **Failure & triumph barks:** Foreman Bracket reacts to wipeouts and perfect hauls — reinforcing "forgive the player" tone.
-
-## 6. Writing rules (for all contributors)
-
-1. Keep VO lines < 12 words; players are mid-chaos and talking over them.
-2. Never blame a specific player in VO; blame the machine, the weather, or fate.
-3. Every legend/flavor line should make a streamer want to read it aloud.
-4. Localize-friendly: avoid idioms that don't translate; keep humor visual-first.
-
-## 7. Localization scope (launch)
-
-EN (full VO + text). Text-only loc for FR, DE, ES-LATAM, PT-BR, zh-Hans, JA at/after launch based on wishlist geography.
+## 7. Localization
+EN full VO + text at launch; text loc for FR, DE, ES-LATAM, PT-BR, zh-Hans, JA (and KO/RU stretch) by wishlist geography. Comedy is visual-first so it survives translation; barks are authored with loc notes.
