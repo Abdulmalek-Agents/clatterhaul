@@ -1,0 +1,14 @@
+{
+  "name": "Clatterhaul.Tests.EditMode",
+  "rootNamespace": "Clatterhaul.Tests",
+  "references": [
+    "Clatterhaul.Runtime",
+    "UnityEngine.TestRunner",
+    "UnityEditor.TestRunner"
+  ],
+  "includePlatforms": ["Editor"],
+  "excludePlatforms": [],
+  "defineConstraints": ["UNITY_INCLUDE_TESTS"],
+  "optionalUnityReferences": ["TestAssemblies"],
+  "autoReferenced": false
+}
