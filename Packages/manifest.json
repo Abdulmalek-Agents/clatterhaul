@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "com.unity.cinemachine": "3.1.2",
+    "com.unity.inputsystem": "1.11.2",
+    "com.unity.render-pipelines.universal": "17.0.4",
+    "com.unity.test-framework": "1.4.5",
+    "com.unity.textmeshpro": "3.2.0-pre.10",
+    "com.unity.timeline": "1.8.7",
+    "com.unity.ugui": "2.0.0",
+    "com.unity.collab-proxy": "2.5.2",
+    "com.unity.ide.rider": "3.0.34",
+    "com.unity.modules.physics": "1.0.0",
+    "com.unity.modules.audio": "1.0.0",
+    "com.unity.modules.animation": "1.0.0",
+    "com.unity.modules.ui": "1.0.0"
+  },
+  "_comment_external": "NOT installable via this manifest — add through Package Manager / Asset Store / Git URL: Mirror (OpenUPM: cc.openupm | git: https://github.com/MirrorNetworking/Mirror), FizzySteamworks transport, Steamworks.NET. See docs/04_UNITY_ASSET_INTEGRATION.md",
+  "scopedRegistries": [
+    {
+      "name": "package.openupm.com",
+      "url": "https://package.openupm.com",
+      "scopes": [
+        "com.cysharp.unitask",
+        "com.openupm"
+      ]
+    }
+  ]
+}
