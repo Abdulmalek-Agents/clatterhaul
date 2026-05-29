@@ -4,44 +4,38 @@ Newest entries on top.
 
 ---
 
-## Phase 3 — Senior Review & Polish (Docs v2.0)  ·  status: PUSHED TO MAIN ✅
+## Phase 4 — Senior Review Cycle 2 & Production-Data Layer (Docs v3.0)  ·  status: PUSHED TO MAIN ✅
 
 ### What happened
-- Convened a **50-person senior review board** and ran **3 critique rounds** (Foundations & Fun Audit → Systems Depth, Humor & Juice → Cohesion, Risk & Ship-Readiness). Full record: `docs/08_REVIEW_AND_CRITIQUE_LOG.md`.
-- **Fun Confidence: 7.4 → 8.6 → 9.2 → 9.4** — unanimous green-light.
-- **Re-authored every doc to v2.0** and added 8 new specialist docs.
+- Convened a **fresh, rotated 50-person senior board** for **Cycle 2** and ran **3 new rounds** (Production-Readiness → Fun-Density & Engagement → Risk/Cohesion/Sign-off). Record: `docs/19_REVIEW_CYCLE_2_V3.md`.
+- **Fun Confidence: 9.4 → 9.6 → 9.7 → 9.8** — unanimous green-light.
+- Mandate: convert the v2.0 *design* into a **buildable, numbered production-data layer** capturing every hour/contract/module/cargo/mutator/line/number of the 10-hour experience.
 
 ### Pushed to main, phase by phase
-- **R1:** Review & Critique Log (08) + ignore OS cruft; removed stray `docs/.DS_Store` (env-review finding).
-- **R2:** GDD v2.0 (01) + Content & 10-Hour Pacing (09) + Economy/Progression/Meta (12) + Level Design & Biome Bible (13).
-- **R3:** Game Feel & Juice (10) + Humor & Comedy Design (11) + Narrative v2.0 (07) + Audio & Music (14).
-- **R4:** TDD v2.0 (02) + Implementation v2.0 (03) + UX/UI & Onboarding (15) + Accessibility (16).
-- **R5:** Asset Integration v2.0 (04) + Art/Environment v2.0 (05) + QA v2.0 (06) + Live-ops (17) + Marketing (18) + README v2.0 + this log.
-
-### Key depth added (polish/fun/engagement)
-- **Depth architecture:** Haul Contracts → per-biome Boss-Hauls → Union Ladder; 4 modes (Contracts/Endless/Daily/Free); Blueprint Garage.
-- **Designed 10-hour curve** with hour-by-hour pacing & unlock cadence (09).
-- **Engineered comedy:** Disaster Cam, Blooper Reel, emote/voice/cargo reactions, Calamity Events, gravestone quips (11).
-- **Best-in-class feel:** hit-stop/shake/squash, winch tension, 3-stage strain telegraph, haptics, clip export (10).
-- **Real meta:** dual currency, 20 ranks + prestige, ~40 sidegrade modules, 60+ cosmetics, challenges (12).
-- **Signature levels:** 6 biomes fully detailed with unique systems + set-pieces + Boss-Hauls (13).
-- **Full supporting specs:** Audio (14), UX/Onboarding (15), Accessibility (16), Live-ops (17), Marketing (18).
+- **V3-1:** Cycle-2 Review Log (19) + this log.
+- **V3-2:** Content Manifest (20) + First 90 Minutes (25).
+- **V3-3:** Module Datasheet (21) + Cargo Datasheet (22) + Mutator Deck (23).
+- **V3-4:** Bark Script (24) + Balance & Tuning (26) + Test-Case Appendix (27).
+- **V3-5:** v3.0 refreshes of GDD (01), Pacing (09), Economy (12), Levels (13) + README index.
 
 ### Decisions / safeguards
-- All power remains **sidegrade**; mutators are opt-in score multipliers; perks cosmetic-adjacent (fairness → review score).
-- Failure is **forgiving + funny** (chip-not-shatter payload, generous checkpoints, comedic framing) to avoid review-killing frustration.
-- Vertical-slice scope **unchanged**; all new systems reuse one physics loop + asset-store art (cost protected).
+- v3.0 adds **data, not scope**: every number targets the existing systems & vertical slice (no new engineering).
+- Tuning audited to preserve **sidegrade fairness**; mutators remain opt-in score multipliers.
+- Humor density target set: **≥ 1 authored comedy beat / ~90s** per leg.
 
 ### Retry log
 - No retryable tool errors this phase.
 
 ### Next steps
-- Begin **M2–M5** (feel → Garage → run/modes → Canyon vertical slice); stand up CI; run first Laugh/Feel/Frustration audits; cut the Next-Fest demo (doc 18).
+- Implement against the bibles (M2–M5); first Laugh/Feel/Frustration audits using the Test-Case Appendix (27); cut the Next-Fest demo (doc 18).
 
 ---
 
+## Phase 3 — Senior Review & Polish (Docs v2.0)  ·  status: MERGED ✅
+First 50-person, 3-round review (`08`); re-authored all docs to v2.0 + added specialist docs 08–18. Fun Confidence 7.4 → 9.4.
+
 ## Phase 2 — Technical & Assets  ·  status: MERGED ✅
-(See git history / PR #2.) TDD, implementation guide, asset integration, art/environment, QA plan, C# stubs + unit tests.
+TDD, implementation guide, asset integration, art/environment, QA, C# stubs + tests.
 
 ## Phase 1 — Foundation  ·  status: MERGED ✅
-(See git history / PR #1.) Unity 6000.4.4f1 skeleton, GDD, narrative bible, portfolio validation.
+Unity 6000.4.4f1 skeleton, GDD, narrative bible, portfolio validation.
