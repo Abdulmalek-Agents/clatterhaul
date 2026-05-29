@@ -1,81 +1,78 @@
 # Clatterhaul — Technical Design Document (TDD)
 
-**Version:** 1.0 (Phase 2)  ·  **Owner:** Lead Unity Architect + Networking Engineers  ·  **Engine:** Unity 6000.4.4f1 / URP
+**Version:** 2.0 (post-review)  ·  **Owner:** Lead Architects + Networking Engineers  ·  Unity 6000.4.4f1 / URP  ·  Mirror + Steam P2P
 
----
+> v2.0 adds the networking/architecture for the new systems: emotes & proximity voice, host-recorded replay + Disaster Cam, Photo Mode, Blueprint Garage sync, deterministic mutator seeds, FeelProfile data, modes/contracts state, save schema v2, telemetry, and updated performance budgets.
 
-## 1. High-level architecture
-
-Clean, SOLID, assembly-separated. Gameplay never references networking transport directly — it talks to interfaces.
-
+## 1. Architecture & assemblies
 ```
-Assets/_Project/Scripts/
-  Core/         → game state, run flow, modifiers, interfaces (no Unity-scene deps where possible)
-  Networking/   → Mirror NetworkManager, Steam lobby/transport, voice
-  Player/       → input routing, physics-hands grab, ragdoll
-  Contraption/  → modules, stations, joints, payload
-  Environment/  → hazards, events, biome streaming
-  UI/           → HUD, lobby, ping wheel (MVVM-lite)
-  Audio/        → strain/feedback audio driver
+Core/        gameplay logic, no Mirror (state machines, run/contract/boss-haul, economy calc, mutator seeds, FeelProfile)
+Net/         Mirror NetworkManager, Steam lobby/transport, voice, emote sync, replay capture, blueprint sync
+Player/      input routing, active-ragdoll, physics-hands grab
+Contraption/ modules, stations, joints, payload, assembly runtime
+Environment/ hazards, Calamity events, biome streaming
+Meta/        currencies, ranks, unlocks, challenges, save service, telemetry
+UI/          HUD, garage/blueprint editor, replay theater, photo mode, leaderboards (MVVM-lite)
+Audio/       FMOD strain/feedback driver
 ```
+Dependencies point inward; `Core` stays Mirror-free (SOLID, testable).
 
-Assembly definitions: `Clatterhaul.Runtime` (gameplay), `Clatterhaul.Net` (networking, refs Mirror), `Clatterhaul.Tests.EditMode`, `Clatterhaul.Tests.PlayMode`. Dependencies point inward (Core has no dependency on Net/UI).
+## 2. Networking model (host-authoritative)
+- Host simulates ALL physics (contraption, payload, ragdolls, hazards, Calamity); clients send input `[Command]`, receive `NetworkTransform`/`NetworkRigidbody` + `[SyncVar]`/`SyncList` state.
+- 2–4 players, friends-first; FizzySteamworks relay; lobby via Steamworks.NET.
+- Physics tick on FixedUpdate (50Hz; eval 60Hz); snapshot interpolation for remote bodies.
+- **No host migration at launch** (documented); host-leave → graceful run-end + payout of banked progress.
 
-## 2. Networking model
+## 3. New-system networking
+| System | Approach |
+|---|---|
+| **Emotes** | client `[Command]` → server `[ClientRpc]` plays networked emote/anim; cosmetic only |
+| **Proximity voice** | Dissonance/Steam voice, positional, host-relayed; mute/volume client-local |
+| **Replay / Disaster Cam** | **host records** lightweight transform keyframes (ring buffer ~30s) + event markers; clients request clip export of host buffer; Disaster-Cam is a client-local camera state triggered by a replicated event flag |
+| **Photo Mode** | client-local pause-cam (host keeps simulating or a "safe" sandbox pause in solo); no net authority needed |
+| **Blueprint Garage** | blueprint = serialized module graph (ids + transforms + joints); host instantiates & validates on depart; sharing via Steam Workshop / file string |
+| **Mutators / Daily** | deterministic **seed** (UTC date for Daily) drives mutator selection on all clients identically (Core, Mirror-free); host authoritative on application |
+| **Leaderboards** | Steam Leaderboards; Daily uses seed + server-side sanity checks (time/score bounds) to deter trivial cheating; cosmetics-only rewards reduce cheat incentive |
 
-- **Stack:** **Mirror** + **FizzySteamworks** transport + **Steamworks.NET** (lobbies, friend invites, P2P relay).
-- **Topology:** **Host-authoritative** (listen server). One player hosts; the host simulates *all physics* (contraption joints, payload, ragdolls). Clients send input via `[Command]`; host replicates state via `NetworkTransform`/`NetworkRigidbodyReliable` + `[SyncVar]`/`SyncList`.
-- **Why host-authoritative:** joint-heavy rigidbody physics cannot be made deterministic across machines; a single authority eliminates desync. Cost-free for friend sessions (no dedicated servers).
-- **What is networked:**
-  - *Server-simulated, client-interpolated:* contraption rigidbodies, payload, ragdolls.
-  - *Command → server:* station inputs (steer/pedal/crank), grab/release intents, ready-up.
-  - *SyncVar:* run state, payload condition, modifier set, score.
-- **Tick:** physics on `FixedUpdate` (default 50Hz; evaluate 60Hz). Snapshot interpolation via Mirror's built-in buffer for smooth remote bodies.
-- **Lobby flow:** Steam invite → `SteamLobbyService` creates/join lobby → Mirror starts host/client on lobby owner → hub scene → ready → load biome (additive).
-- **Late join:** allowed in hub; in-run joiners spectate to next safe checkpoint, then spawn.
-- **Voice:** distance-attenuated VOIP (Steamworks voice or Dissonance asset — see asset doc). First-class feature.
-- **No host migration at launch** (documented limitation; host leaving ends the run — acceptable for friend sessions; revisit post-launch).
+## 4. Contraption assembly runtime
+- Modules are prefabs with `ContraptionModule` + joint configs + a `FeelProfile`. The assembly system builds the rigidbody graph from a blueprint at depart, arms break thresholds, computes center-of-mass/ballast, and validates connectivity. Cosmetic modules carry zero physics cost.
 
-## 3. Physics & the contraption
+## 5. Data: FeelProfile & tunables
+- `FeelProfile` (SO): hit-stop ms, shake amp/dur, squash curve, VFX/SFX/FMOD refs, haptic profile, slow-mo trigger threshold. Designers tune feel without code (doc 10).
+- All gameplay constants in SOs (module vectors, mutator effects, payout curves).
 
-- **Bodies:** prefer `ArticulationBody` for the locomotion chain (stable joint solving) where suitable; `Rigidbody` + `ConfigurableJoint` for breakable cosmetic/cargo links.
-- **Breakage:** joints expose break force/torque; on break, spawn debris + audio + "disaster cam" trigger.
-- **Grab (physics-hands):** `PhysicsHandGrab` creates a `ConfigurableJoint`/`FixedJoint` between hand and target on grab; springs tuned for Human-Fall-Flat feel. Grab intent is a Command; the *joint* is created on the host only.
-- **Stability tuning:** solver iterations raised on the contraption; center-of-mass authored per chassis; outriggers add anti-tip torque.
-- **Determinism note:** we do NOT rely on cross-client determinism; host is the single source of truth.
+## 6. Save schema v2 (local; Easy Save 3)
+```
+Profile { scrip, sprockets, unionRank, rankXp, prestige,
+          unlockedModules[], unlockedBiomes[], unlockedMutators[],
+          ownedCosmetics[], equipped{}, blueprints[], 
+          challenges{daily[],weekly[],progress}, settings{accessibility,audio,controls},
+          stats{perfectHauls[], bestTimes{}, clipsShared} }
+```
+Daily-seed derived from UTC date so friends share the same daily without sync. Cloud save via Steam Cloud.
 
-## 4. Core systems (see code stubs in `Assets/_Project/Scripts`)
-
-- `GameStateMachine` — Boot → MainMenu → Lobby → Hub → Haul → Extraction → Payout (and back). Pure C#, event-driven.
-- `HaulRunManager` — owns a run: route, checkpoints, payload condition, score; raises events the UI/Audio observe.
-- `RunModifier` (ScriptableObject) + `RunModifierDeck` — data-driven modifier system; deterministic daily seed.
-- Interfaces: `IInteractable`, `IGrabbable`, `IStation`, `IPayload`, `IHazard`.
-
-## 5. Data & save
-
-- Local profile (unlocks, cosmetics, settings) via a save service (Easy Save 3 or JSON). No server-side accounts at launch. Daily-modifier seed derived from UTC date (so friends share the same daily).
-
-## 6. Performance budget
-
+## 7. Performance budget (updated)
 | Target | Spec |
 |---|---|
-| 1080p 60 FPS | mid-range PC (GTX 1660 / RX 580 class) |
-| Steam Deck | 40–60 FPS at native, verified |
-| Frame budget | ≤ 16.6 ms; physics ≤ 4 ms; render ≤ 8 ms |
-| Draw calls | < 1500 via SRP Batcher + GPU instancing on biome modules |
-| Rigidbodies (active) | budget ~60 contraption/debris bodies; pool debris |
+| 1080p 60 FPS | mid PC (GTX 1660 / RX 580) |
+| Steam Deck | 40–60 FPS native, verified |
+| Frame | ≤ 16.6 ms; physics ≤ 4 ms; render ≤ 8 ms |
+| Active rigidbodies | ~60 (contraption+debris); debris pooled; mutators cap body counts |
+| Replay buffer | transform-keyframe ring (~30s), LOD-decimated; off-thread serialize on export |
+| VFX | pooled; particle budget per biome; Disaster-Cam slow-mo must not spike GC |
+Profiling each milestone (doc 06). SRP Batcher + GPU instancing on modular kits; baked GI + light probes.
 
-Profiling cadence: QA runs the Unity Profiler each milestone; physics-heavy scenes flagged. URP forward+ ; bake static lighting; light probes for dynamic props.
+## 8. Telemetry (opt-in, feeds economy/live-ops)
+Scrip/hour, time-to-next-unlock, module pick-rate per biome, challenge completion, clip exports, laugh-proxy (Disaster-Cam triggers/session), crash/ANR, perf percentiles. Privacy-respecting, toggleable.
 
-## 7. Build & CI
+## 9. Build & CI
+Windows x64 IL2CPP. GitHub Actions: restore → EditMode tests → (optional) PlayMode smoke → lint. Branch/phase → review → merge to main.
 
-- Windows x64 IL2CPP release. GitHub Actions stub (lint + EditMode tests) documented in Phase 3. Branch-per-phase → PR → QA sign-off → merge.
-
-## 8. Risk register (technical)
-
+## 10. Risk register (technical)
 | Risk | Mitigation |
 |---|---|
-| Physics "feel" jank | Lock grab/joint feel in M2; weekly feel playtests; tunable spring params as SO |
-| Network desync of bodies | Host-authoritative only; never trust client physics |
-| Steam P2P NAT issues | FizzySteamworks relay fallback; test across NAT types |
-| Perf on Deck | Aggressive LODs, debris pooling, modifier-capped body counts |
+| Replay/VFX perf on Deck | LOD ring buffer, pooling, off-thread export, body caps |
+| Physics desync | host-authoritative only; never trust client physics |
+| Blueprint exploit/instability | server validation, connectivity & mass checks, fallback rig |
+| Daily leaderboard cheating | seed + bounds checks; cosmetic-only rewards |
+| Voice CPU/bandwidth | codec tuning, distance culling, opus low-bitrate |

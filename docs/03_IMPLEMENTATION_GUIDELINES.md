@@ -1,51 +1,65 @@
 # Clatterhaul — Implementation Guidelines (Build Plan)
 
-**Version:** 1.0 (Phase 2)  ·  **Owner:** Lead Unity Architect + Senior Unity Developers
+**Version:** 2.0 (post-review)  ·  **Owner:** Lead Architect + Senior Unity Developers
 
-> A milestone-ordered, dependency-aware build plan — *ready to start Unity development*. No time estimates by policy; sequence and Definition-of-Done only.
+> Milestone-ordered, dependency-aware, no time estimates (policy). v2.0 expands the backlog to cover review-driven systems while **protecting vertical-slice scope** (R3-SCOPE-8): every new system reuses the one physics loop + asset-store art.
 
 ## Coding standards
-
-- C# 9+, `nullable` enabled where practical. One class per file. PascalCase types/methods, `_camelCase` private fields, `I`-prefixed interfaces.
-- SOLID: depend on interfaces, not transports. Core assembly must not reference Mirror.
-- Every public type/method has XML doc comments. No magic numbers — use serialized fields / SO config.
-- All gameplay tunables live in ScriptableObjects so designers iterate without code.
-- Each system ships with an EditMode test stub at minimum.
+C# 9+, one class/file, interfaces over transports, XML docs on public APIs, all tunables in ScriptableObjects, EditMode test per logic system. `Clatterhaul.Runtime` (Core) must not reference Mirror.
 
 ## Milestone sequence
 
-### M0 — Project & pipeline (foundation)
-- URP configured (Deck-safe quality tiers), Input System actions asset, assembly definitions, folder structure, save service.
-- **DoD:** empty hub scene boots through `GameStateMachine` to a playable local character.
+### M0 — Project & pipeline
+URP (Deck tiers), Input System, assembly defs, save service, FeelProfile SO framework.
+**DoD:** local character boots through GameStateMachine into a test hub.
 
 ### M1 — Networking spine
-- Import Mirror + FizzySteamworks + Steamworks.NET. `ClatterNetworkManager`, `SteamLobbyService` (create/join/invite), player spawn, name tags.
-- **DoD:** 2–4 players join via Steam invite into the hub and see each other move.
+Mirror + FizzySteamworks + Steamworks.NET; lobby/invite; player spawn; proximity voice.
+**DoD:** 2–4 players join via Steam invite and move + talk in hub.
 
-### M2 — Player + physics-hands (the feel)
-- `PlayerInputRouter`, locomotion, ragdoll, `PhysicsHandGrab` (networked grab via Command, host-side joint).
-- **DoD:** players can grab/carry/throw props together; grab feel signed off in a feel playtest.
+### M2 — Player & physics-hands (THE FEEL)
+Active ragdoll (PuppetMaster), grab (networked Command, host joint), full **FeelProfile** stack (hit-stop/shake/squash/VFX/SFX/haptics), Disaster-Cam.
+**DoD:** grab/carry/throw + a catastrophe auto-produces a slow-mo clip; feel signed off (doc 10 checklist).
 
-### M3 — The contraption
-- `ContraptionModule` base + chassis/locomotion/lift/stabilizer; `ContraptionStation` (steer/pedal/crank) with networked hand-off; `Payload` with condition.
-- **DoD:** a 2–4p crew drives a basic rig with a payload across a flat test track.
+### M3 — Contraption & Blueprint Garage
+Module base + classes, stations (networked hand-off), payload + condition + cargo reactions, snap-grid Blueprint editor, assembly runtime + validation.
+**DoD:** crew builds a rig in the Garage and drives it with a reacting payload on a test track.
 
-### M4 — Hazards, run flow & modifiers
-- `HaulRunManager` (route/checkpoints/score), `IHazard` set (ravine/mud/ice/wind), `RunModifierDeck` (daily seed), extraction + payout, disaster-cam.
-- **DoD:** full prep→haul→extract→payout loop on 1 biome with 3 hazards + 1 modifier.
+### M4 — Run flow, hazards, Calamity & modes
+HaulRunManager (route/checkpoints/score), IHazard set, one Calamity, extraction/payout, Contracts + Endless + Daily (seeded mutators), Blooper Reel + gravestone.
+**DoD:** full Prep→Haul→Calamity→Boss-stub→Extract→Payout→Blooper loop, 2–4p, one biome.
 
-### M5 — Vertical slice biome (Canyon) + UX/Audio
-- Canyon biome dressed to ship quality (see Art/Environment plan), HUD, ping wheel, proximity voice, strain-audio driver, settings/accessibility.
-- **DoD:** Canyon is demo-ready and survives the QA + Art/Environment joint review.
+### M5 — Canyon vertical slice (ship-quality)
+Canyon dressed/lit to bar (doc 05), Canyon Boss-Haul "Collapsing Mesa," HUD, ping/emote wheels, onboarding "First Hill," economy v1, replay/photo/clip export.
+**DoD:** Canyon demo-ready; passes joint QA+Art review + Feel + Laugh audits; Deck perf green.
 
-### M6 — Content scale-out
-- Remaining 5 biomes, branching routes, full modifier deck, cosmetics/unlocks, leaderboards, localization hooks.
-- **DoD:** ~10h content target met; review-readiness checklist green.
+### M6 — Meta & progression
+Currencies, 20 Union Ranks, unlock tables, challenges (daily/weekly), cosmetics, leaderboards, telemetry, Steam Cloud save.
+**DoD:** unlock cadence matches doc 09; no power-creep (sidegrade audit).
+
+### M7 — Content scale-out
+Remaining 5 biomes (signature systems, Calamities, Boss-Hauls), full module set (~40), 12+ cargo, ~16 mutators, 60+ cosmetics, Workshop blueprint sharing.
+**DoD:** ~10h target met (doc 09); biome DoD checklist green for each.
+
+### M8 — Polish, accessibility, launch prep
+Accessibility suite (doc 16), localization text, marketing build (doc 18), Next-Fest demo cut, perf hardening, full QA regression.
+**DoD:** review-readiness checklist green; demo shipped to Next Fest.
+
+## Review-finding → milestone traceability
+| Finding | Milestone |
+|---|---|
+| Feel/Juice (R1-FEEL-4, R2-FEEL-3) | M2 |
+| Blueprint Garage (R1-CONTRA-6) | M3 |
+| Modes/Daily/Endless (R1-MModes-8) | M4 |
+| Humor engine (R1-FUN-3, R2-HUMOR-2) | M2–M5 |
+| 10h pacing/contracts (R1-DEPTH-2) | M5–M7 |
+| Economy/meta (R1-PROG-7) | M6 |
+| Biome level design (R2-LV-5) | M7 |
+| Accessibility (R2-ACC-12) | M8 |
+| Live-ops hooks (R2-LIVE-13) | M6–M8 |
 
 ## Definition of Done (every feature)
-1. Code reviewed (SOLID, commented). 2. EditMode/PlayMode test stub present & passing. 3. Networked path verified with 2–4 clients. 4. Profiled within budget. 5. QA + (if it touches scenes) Art/Environment sign-off. 6. STUDIO_LOG updated.
+Reviewed + commented; test stub passing; networked path verified 2–4p; profiled; QA (+ Art/Env for scenes) sign-off; STUDIO_LOG updated.
 
 ## Test strategy
-- **EditMode:** pure logic (run scoring, modifier seeding, state machine transitions).
-- **PlayMode:** spawn/grab/station hand-off, hazard triggers, payload condition.
-- **Network:** Mirror's multi-instance + ParrelSync for 2–4 local clients; latency simulation via transport settings.
+EditMode (pure logic: payout, mutator seed, rank XP, state machine); PlayMode (grab, station hand-off, hazard, payload, Calamity); Network (ParrelSync 2–4 + latency sim); Fun (Laugh/Feel audits, doc 06).
