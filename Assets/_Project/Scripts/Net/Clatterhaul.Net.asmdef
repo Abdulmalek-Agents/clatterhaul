@@ -1,0 +1,13 @@
+{
+  "name": "Clatterhaul.Net",
+  "rootNamespace": "Clatterhaul.Net",
+  "references": [
+    "Clatterhaul.Runtime",
+    "Mirror"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "autoReferenced": true,
+  "_comment": "Networked MonoBehaviours. References Mirror (import via Package Manager/OpenUPM — see docs/04). If unresolved, the 'Mirror' reference will show as missing until the package is imported."
+}
