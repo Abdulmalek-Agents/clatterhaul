@@ -4,31 +4,35 @@ Newest entries on top.
 
 ---
 
-## Phase 5 — Documentation cleanup & dev-readiness  ·  status: PUSHED TO MAIN ✅
+## Phase 6 — Studio-owned asset library integration  ·  status: PUSHED TO MAIN ✅
 
 ### What happened
-- Trimmed the documentation set to the **final, development-ready** docs only and organized them for a Unity dev team.
-- **Removed (unnecessary for starting development):** `00_PORTFOLIO_5_IDEAS_AND_VALIDATION` (org-level, other games), `08_REVIEW_AND_CRITIQUE_LOG` + `19_REVIEW_CYCLE_2_V3` (process artifacts — essence preserved in the Production Bible), `18_MARKETING_AND_STEAM_PAGE` (not dev), and the redundant short Arabic summary.
-- **Added `00_PRODUCTION_BIBLE.md`** — the single entry point: quick-start, documentation map by discipline track, milestone→doc roadmap (M0–M8), vertical-slice scope, conventions, and a brief polish history.
-- **Expanded `20_CONTENT_MANIFEST.md` → v3.1** — now the authoritative ~10-hour capture: all 34 hauls + **micro-beat flows** for every Boss-Haul + Endless/Daily/Workshop/Mastery content systems + consolidated hour map + content totals.
-- Refreshed `README.md` (entry = Production Bible) and `docs/AR/README.md`.
+- Reviewed the studio's **owned 66-asset library** (Inventix Games orders, May 2026) against Clatterhaul's spec (URP, stylized low-poly, Mirror, physics-comedy).
+- **~30 assets map cleanly onto the project**; mapped them by system into `04_UNITY_ASSET_INTEGRATION.md` (Part 1) and per-biome into `05_ART_AND_ENVIRONMENT_PLAN.md` (§10).
+- Documented **external packages still required** (Mirror stack, PuppetMaster, FMOD, DOTween, Easy Save 3, a recorder, extra Synty kits), the **Style-Unification Pass** for higher-fidelity packs, and the **not-used list** with reasons.
 
-### Result
-- Clean, navigable, **development-ready** doc set (one final version per topic), organized by track and mapped to milestones. Next action: implement **M2–M5** from Tracks B/C/D.
+### Key picks (highlights)
+- **Tech/anim:** Character Controller Pro / Traversal Pro (base controller), Animation Composer System, Eyes Animator (faces/cargo), Cutscene Engine, MMFPSE (Mirror reference only).
+- **Feel/VFX:** All-In-1 Shader Nodes (outline/dissolve/heat/ice/caustics), Lumen Stylized Light FX 2, Ultimate Mesh FX, Screenspace VFX, Realistic Water VFX, Casual RPG VFX.
+- **Weather/wind:** Stylized Weather System, Zephyr Dynamic Wind (sails/balloons/Squall).
+- **Environment:** POLYGON Battle Royale (Synty style anchor), Obby Parkour (hazard scripts), Spline Mesher Pro (cables/ropes/bridges), Industrial Props (contraption parts ⚠), Modular Cyber Racing Cars, Shatter Stone, Toon Town, Neon Interior Props ⚠, Urban Abandoned ⚠, Stylized Dungeons, Harvest Garden.
+- **Characters/UI/audio:** BoZo Modular (crew), City Characters (anims), Heat Complete Modern UI, Game UI & Puzzle SFX.
+- **Tools:** Asset Inventory 4, Hierarchy Designer, Colorize (cosmetic paints), LightMap Fusion Pro.
+
+### Decisions / safeguards
+- **Mirror-only** netcode preserved — owned Photon templates (MFPS, Horror MP) excluded; MMFPSE used only as a Mirror reference.
+- **No gore/magic/medieval/sci-fi-interior** assets used (genre/tone mismatch).
+- **Style-Unification Pass mandatory** on ⚠ higher-fidelity packs before the environment-review gate (keeps one cohesive low-poly world).
 
 ### Retry log
 - No retryable tool errors this phase.
 
 ---
 
+## Phase 5 — Documentation cleanup & dev-readiness  ·  status: MERGED ✅
+Trimmed to final dev-ready docs; added Production Bible (00); expanded Content Manifest (20) to full 10h.
+
 ## Phase 4 — Senior Review Cycle 2 & Production-Data Layer (v3.0)  ·  status: MERGED ✅
-Second 50-person, 3-round review; produced the numbered content/tuning bibles (20–27). Fun Confidence → 9.8.
-
 ## Phase 3 — Senior Review & Polish (v2.0)  ·  status: MERGED ✅
-First 50-person, 3-round review; re-authored docs to v2.0 + specialist docs. Fun Confidence 7.4 → 9.4.
-
 ## Phase 2 — Technical & Assets  ·  status: MERGED ✅
-TDD, implementation guide, asset integration, art/environment, QA, C# stubs + tests.
-
 ## Phase 1 — Foundation  ·  status: MERGED ✅
-Unity 6000.4.4f1 skeleton, GDD, narrative bible.
