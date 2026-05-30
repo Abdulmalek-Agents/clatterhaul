@@ -3,72 +3,39 @@
 > **Build a terrible machine. Haul it home. Try not to die laughing.**
 
 A **2–4 player co-op physics-contraption traversal comedy** for PC (Steam).
-Lineage: *PEAK* × *RV There Yet?* × *Human Fall Flat* × *Lethal Company*.
 
 | | |
 |---|---|
-| **Engine** | Unity **6000.4.4f1** |
-| **Render Pipeline** | URP |
+| **Engine** | Unity **6000.4.4f1** / URP |
 | **Networking** | **Mirror** + FizzySteamworks (Steam P2P, host-authoritative) |
 | **Players** | 2–4 co-op |
 | **Target playtime** | **~10h+** |
 | **Platform** | Windows 64-bit (Steam), Steam Deck verified |
-| **Price** | $9.99–$12.99 |
-| **Docs version** | **v3.0** (after **two** 50-person, 3-round senior review cycles) |
+| **Docs** | **v3.0 — final, development-ready** |
 
----
+## 📘 Start here
+→ **[`docs/00_PRODUCTION_BIBLE.md`](docs/00_PRODUCTION_BIBLE.md)** — the single entry point: quick-start, documentation map by discipline, milestone→doc roadmap, and the ~10-hour content overview.
 
-## Documentation (v3.0)
+The documentation set has been trimmed to the **final development-ready docs only** and organized by track:
 
-**Design & content**
-| Doc | Purpose |
-|---|---|
-| [`01_GAME_DESIGN_DOCUMENT.md`](docs/01_GAME_DESIGN_DOCUMENT.md) | Full GDD (v3.0) |
-| [`09_CONTENT_AND_10_HOUR_PACING.md`](docs/09_CONTENT_AND_10_HOUR_PACING.md) | 10-hour curve overview |
-| [`13_LEVEL_DESIGN_AND_BIOMES.md`](docs/13_LEVEL_DESIGN_AND_BIOMES.md) | Biome identity & rules |
-| [`20_CONTENT_MANIFEST.md`](docs/20_CONTENT_MANIFEST.md) | **Every haul spec'd (34 hauls)** |
-| [`25_FIRST_90_MINUTES.md`](docs/25_FIRST_90_MINUTES.md) | Minute-by-minute onboarding |
+- **Design:** GDD (01), Narrative (07), Level/Biomes (13)
+- **Content (the 10h):** Pacing (09), **Content Manifest (20)**, First-90 (25), Modules (21), Cargo (22), Mutators (23), Economy (12), Balance (26), Barks (24)
+- **Feel & Fun:** Feel/Juice (10), Humor (11), Audio (14)
+- **Tech:** Technical Design (02), Implementation (03), Asset Integration (04)
+- **Art / UX / QA / Roadmap:** Art/Env (05), UX/Onboarding (15), Accessibility (16), QA (06), Test Cases (27), Live-ops (17)
+- **Arabic:** [`docs/AR/`](docs/AR/)
 
-**Systems data**
-| Doc | Purpose |
-|---|---|
-| [`12_ECONOMY_PROGRESSION_AND_META.md`](docs/12_ECONOMY_PROGRESSION_AND_META.md) | Economy/meta policy |
-| [`21_MODULE_DATASHEET.md`](docs/21_MODULE_DATASHEET.md) | **All 40 modules + stats** |
-| [`22_CARGO_DATASHEET.md`](docs/22_CARGO_DATASHEET.md) | **All 12 cargo + reactions** |
-| [`23_MUTATOR_DECK.md`](docs/23_MUTATOR_DECK.md) | **16 mutator cards** |
-| [`26_BALANCE_AND_TUNING.md`](docs/26_BALANCE_AND_TUNING.md) | **Formulas, XP curve, par, assists** |
+## Project layout
+```
+Assets/_Project/Scripts/   Clatterhaul.Runtime (Core, no Mirror) + Clatterhaul.Net (Mirror)
+Assets/Tests/              EditMode/PlayMode tests
+Packages/manifest.json     URP 17, Cinemachine 3, Input System, Test Framework
+ProjectSettings/           Unity 6000.4.4f1
+docs/                      the production bible (start at 00)
+```
 
-**Fun engine**
-| Doc | Purpose |
-|---|---|
-| [`10_GAME_FEEL_AND_JUICE.md`](docs/10_GAME_FEEL_AND_JUICE.md) | Impact/feedback/juice |
-| [`11_HUMOR_AND_COMEDY_DESIGN.md`](docs/11_HUMOR_AND_COMEDY_DESIGN.md) | Engineered comedy |
-| [`07_NARRATIVE_AND_WORLD.md`](docs/07_NARRATIVE_AND_WORLD.md) | World & characters |
-| [`24_BARK_SCRIPT.md`](docs/24_BARK_SCRIPT.md) | **120+ VO lines** |
-| [`14_AUDIO_AND_MUSIC.md`](docs/14_AUDIO_AND_MUSIC.md) | Audio & music |
-
-**Systems & production**
-| Doc | Purpose |
-|---|---|
-| [`02_TECHNICAL_DESIGN_DOCUMENT.md`](docs/02_TECHNICAL_DESIGN_DOCUMENT.md) | Architecture & networking |
-| [`03_IMPLEMENTATION_GUIDELINES.md`](docs/03_IMPLEMENTATION_GUIDELINES.md) | M0–M8 build plan |
-| [`15_UX_UI_AND_ONBOARDING.md`](docs/15_UX_UI_AND_ONBOARDING.md) | UX, HUD, Garage |
-| [`16_ACCESSIBILITY.md`](docs/16_ACCESSIBILITY.md) | Accessibility suite |
-| [`04_UNITY_ASSET_INTEGRATION.md`](docs/04_UNITY_ASSET_INTEGRATION.md) | Asset Store plan |
-| [`05_ART_AND_ENVIRONMENT_PLAN.md`](docs/05_ART_AND_ENVIRONMENT_PLAN.md) | Art & environment standards |
-| [`06_QA_TEST_PLAN.md`](docs/06_QA_TEST_PLAN.md) | QA + fun audits |
-| [`27_TEST_CASE_APPENDIX.md`](docs/27_TEST_CASE_APPENDIX.md) | **Enumerated test cases** |
-
-**Business & process**
-| Doc | Purpose |
-|---|---|
-| [`17_LIVEOPS_AND_POST_LAUNCH.md`](docs/17_LIVEOPS_AND_POST_LAUNCH.md) | Seasons, Workshop, creators |
-| [`18_MARKETING_AND_STEAM_PAGE.md`](docs/18_MARKETING_AND_STEAM_PAGE.md) | Steam page & wishlist funnel |
-| [`08_REVIEW_AND_CRITIQUE_LOG.md`](docs/08_REVIEW_AND_CRITIQUE_LOG.md) | Review **Cycle 1** (→ v2.0) |
-| [`19_REVIEW_CYCLE_2_V3.md`](docs/19_REVIEW_CYCLE_2_V3.md) | Review **Cycle 2** (→ v3.0) |
-| [`00_PORTFOLIO_5_IDEAS_AND_VALIDATION.md`](docs/00_PORTFOLIO_5_IDEAS_AND_VALIDATION.md) | 5-concept slate + validation |
-| [`AR/ملخص_اللعبة_عربي.md`](docs/AR/ملخص_اللعبة_عربي.md) | Arabic summary |
-| [`STUDIO_LOG.md`](STUDIO_LOG.md) | Living phase/decision log |
+## Workflow
+Branch-per-phase → PR → QA (+ Art/Environment for scenes) sign-off → merge. See `docs/00_PRODUCTION_BIBLE.md` §8.
 
 ---
 _© Abdulmalek-Agents. Internal concept project._
